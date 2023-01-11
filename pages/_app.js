@@ -1,5 +1,31 @@
-import '../styles/globals.css'
+import GlobalStyle from '../styles/GlobalStyle.js'
+import Layout from '../components/Layout'
+import { ThemeProvider } from 'styled-components'
 
+
+const theme = {
+  color: {
+    background: "gray",
+    foreground: "white",
+    fontDark: "black",
+    fontLight: "white",
+    accent: "purple",
+    shadow: "black"
+  },
+  border: {
+    inner: ".5em",
+    outer: "1em",
+    input: ".25em"
+  }
+}
 export default function App({ Component, pageProps }) {
-  return <Component {...pageProps} />
+
+  return (
+    <ThemeProvider theme={theme}>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout >
+      <GlobalStyle />
+    </ThemeProvider>
+  )
 }
