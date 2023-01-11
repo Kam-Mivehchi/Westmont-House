@@ -25,7 +25,7 @@ span{
 
 
 //tablets
-@media screen and (min-width: 740px){
+@media screen and (min-width: ${({ theme }) => theme.breakpoints.md}){
 span{
 display:flex;
 }

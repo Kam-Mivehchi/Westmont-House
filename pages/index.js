@@ -5,6 +5,7 @@ import Hero from '../components/assets/heroVideo.mp4'
 import { Inter } from '@next/font/google'
 
 import styled from 'styled-components'
+import { Grid, FeaturedCard, EnclosedCard } from '../styles/Utilities.styles'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -12,8 +13,17 @@ const HeroContainer = styled.section`
 position: relative;
 text-align: center;
 // padding:0 1em;
-max-width:1100px;
+max-width:${({ theme }) => theme.breakpoints.lg};
 margin:0 auto;
+div{
+  background-color:rgb(0,0,0,.3);
+  width:100%;
+height:min(50vh,20em);
+
+
+ position:absolute;
+ border-radius: inherit;
+}
 video{
 height:min(50vh,20em);
 width:100%;
@@ -23,8 +33,13 @@ object-fit:cover;
   border-right:0;
   
 }
+
 h1 {
-  color:${({ theme }) => theme.color.darkFont};
+  color:${({ theme }) => theme.color.fontLight};
+  // filter: drop-shadow(0 0 em 3em rgb(0,0,0));
+  filter: drop-shadow(2px 2px .25em  ${({ theme }) => theme.color.accent2});
+
+  z-index:10;
   position:absolute;
   left:50%;
   top:50%;
@@ -32,17 +47,70 @@ h1 {
   font-weight:bold;
   font-size:3em;
   width:100%;
+  // opacity:1;
+
 }
-@media screen and (min-width: 1200px){
+@media screen and (min-width: ${({ theme }) => theme.breakpoints.lg}){
 video{
 
   border:.25em solid ${({ theme }) => theme.color.accent};;
   border-radius:${({ theme }) => theme.border.outer}
+ 
 
-
+}
+div{
+  border-radius:${({ theme }) => theme.border.outer}
 }
 }
 `
+
+const content = {
+  cards_feature: [
+
+    {
+      title: "Gallery",
+      image: ['https://via.placeholder.com/200', "placeholder-alt"],
+      description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem id harum excepturi rerum perspiciatis sapiente enim, architecto ipsum molestiae tempore velit, suscipit impedit repellat nisi veritatis deserunt quibusdam sequi officiis.",
+      link: ["Learn More", "/about"],
+      order: 2
+    },
+    {
+      title: "Floor Plan",
+      image: ['https://via.placeholder.com/300', "placeholder-alt"],
+      description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem id harum excepturi rerum perspiciatis sapiente enim, architecto ipsum molestiae tempore velit, suscipit impedit repellat nisi veritatis deserunt quibusdam sequi officiis. ",
+      link: ["Learn More", "/about"],
+      order: 3
+    },
+  ],
+  cards_enclosed: [
+    {
+      title: "Services",
+      image: ['https://via.placeholder.com/300', "placeholder-alt"],
+
+      description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem id harum excepturi rerum perspiciatis sapiente enim, architecto ipsum molestiae tempore velit, suscipit impedit repellat nisi veritatis deserunt quibusdam sequi officiis.",
+      link: ["Learn More", "/about"],
+      order: 1
+    },
+    {
+      title: "Contact",
+      image: ['https://via.placeholder.com/200', "placeholder-alt"],
+
+      description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem id harum excepturi rerum perspiciatis sapiente enim, architecto ipsum molestiae tempore velit, suscipit impedit repellat nisi veritatis deserunt quibusdam sequi officiis. ",
+      link: ["Learn More", "/about"],
+      order: 4
+    },
+  ],
+  thumbnails: [
+    {
+      title: "About Us",
+      image: ['https://via.placeholder.com/300', "placeholder-alt"]
+    },
+    {
+      title: "FAQs",
+      image: ['https://via.placeholder.com/300', "placeholder-alt"]
+    }
+  ]
+}
 export default function Home() {
   return (
     <>
@@ -53,14 +121,39 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <HeroContainer>
-        <h1>Premier Assisted Living in Northern Virginia</h1>
+        <div></div>
         <video autoPlay loop muted >
           <source src={Hero} type="video/mp4" />
-          {/* <source src="movie.ogg" type="video/ogg" /> */}
-
-
         </video>
+        <h1>Premier Assisted Living in Northern Virginia</h1>
       </HeroContainer>
+
+      <Grid>
+        {content.cards_feature.map((section, idx) => {
+          return (
+            <FeaturedCard key={idx}>
+              {/* the title and image order switch for the floor plan card */}
+              <div style={{ display: 'flex', flexDirection: 'column-reverse' }}>
+                <img src={section.image[0]} alt={section.image[1]} />
+                <h2>{section.title}</h2>
+              </div>
+              <p>{section.description}</p>
+              <button>{section.link[0]}</button>
+            </FeaturedCard>)
+        })}
+        {content.cards_enclosed.map((section, idx) => {
+          return (
+            <EnclosedCard key={idx}>
+              <div>
+                <h2>{section.title}</h2>
+                <img src={section.image[0]} alt={section.image[1]} />
+              </div>
+              <p>{section.description}</p>
+              <button>{section.link[0]}</button>
+            </EnclosedCard>)
+        })}
+
+      </Grid>
     </>
   )
 }
