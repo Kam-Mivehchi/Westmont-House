@@ -110,6 +110,9 @@ select {
     scroll-behavior: auto !important;
   }
 }
+a{
+  transition:all .2s ease-in-out;
+}
 a:hover{
  color:black;
 filter:drop-shadow( 0 0 10px black)
