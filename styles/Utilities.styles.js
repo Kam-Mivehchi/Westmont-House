@@ -19,7 +19,12 @@ border-radius:${({ theme }) => theme.border.outer};
 display:grid;
 grid-template-columns:repeat(12,1fr);
 width:90%;
+div{
+   width:100%;
+   height:15em;
+   position:relative;
 
+}
 *{
 grid-column:span 12;
 }
@@ -28,12 +33,13 @@ h2{
    font-weight:bold;
 }
 img{
+   
    justify-self:center;
-   object-fit:contain;
    width:100%;
    aspect-ratio:2/1;
    object-fit:cover; 
-    border-radius:${({ theme }) => theme.border.outer};
+   
+   border-radius:${({ theme }) => theme.border.outer};
 ;
 }
 button{
@@ -64,12 +70,18 @@ grid-column: span ${({ xxl }) => xxl};
 }
 `
 export const FeaturedCard = styled(Card)`
-img{
-
+div{
+   height:25em;
+   
 }
-
+img{
+   margin:0;
+  
+   border-radius:${({ theme }) => theme.border.outer} ;
+}
 h2{
 color:${({ theme }) => theme.color.accent2};
+display:block;
 }
 p,button{
    margin:1em 0;
@@ -90,6 +102,8 @@ div{
 margin:.5em 0;
 img{
    margin:0;
+   position:absolute;
+   z-index:-1;
    border-radius:${({ theme }) => theme.border.outer} ${({ theme }) => theme.border.outer} 0 0;
 }
 
@@ -117,15 +131,23 @@ height:15vh;
 margin:.5em;
 padding:0.5em 0em;
 width:70%;
-transition: all .2s ease-in-out;
+transition: all .3s ease-in-out;
+border-radius:${({ theme }) => theme.border.outer};
+background-color:rgb(0,0,0,.5);
+
+
 
 img{
+   position:absolute;
+   z-index:-1;
    width:100%;
    height:100%;
-   
+   object-fit:cover;
    border-radius:${({ theme }) => theme.border.outer};
 }
-h3{
+
+
+a{
 position:absolute;
 bottom:50%;
 left:50%;
@@ -133,23 +155,21 @@ width:max-content;
 transform:translate(-50%,50%);
 color:${({ theme }) => theme.color.fontLight};
 font-weight:bold;
-font-size: min(10vw,3em)
+font-size: min(10vw,3em);
+filter:none;
+
 }
+
 &:hover{
-   transform:scale(1.05);
- 
-// filter:drop-shadow( 0 0 10px ${({ theme }) => theme.color.accent});
-img{
-
-   border:4px solid ${({ theme }) => theme.color.accent2};
+background-color:rgb(0,0,0,.2);
+background-color:rgb(0,0,0,.2);
+text-shadow: 0 0 10px black;
+a{
+color:${({ theme }) => theme.color.accent2};
+text-shadow: 0 0 20px white;
 }
 }
-&:active{
-   transform:scale(.95);
 
-filter:drop-shadow( 0 0 10px ${({ theme }) => theme.color.accent});
-
-}
 
 @media screen and (min-width: ${({ theme }) => theme.breakpoints.lg}){
 grid-column: span 4;
