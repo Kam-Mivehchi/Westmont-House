@@ -20,12 +20,17 @@ const HeroContainer = styled.section`
     div{
       background-color:rgb(0,0,0,.3);
       width:100%;
-      height:min(50vh,20em);
       position:absolute;
       border-radius: inherit;
+      height:50vh;
+      z-index:10;
+
+
+
     }
+
     video{
-      height:min(50vh,20em);
+      height:50vh;
       width:100%;
       object-fit:cover;
       border:.5em solid ${({ theme }) => theme.color.accent};
@@ -38,7 +43,7 @@ const HeroContainer = styled.section`
       color:${({ theme }) => theme.color.fontLight};
       text-shadow:2px 2px .25em  ${({ theme }) => theme.color.accent2};
       font-weight:bold;
-      font-size:3em;
+      font-size:min(5vw,2em);
       width:100%;
     }
 
@@ -66,12 +71,12 @@ export default function Home() {
       </Head>
       <HeroContainer>
         <div>
+          <h1>Premier Assisted Living in Northern Virginia</h1>
 
         </div>
         <video autoPlay loop muted >
           <source src={Hero} type="video/mp4" />
         </video>
-        <h1>Premier Assisted Living in Northern Virginia</h1>
       </HeroContainer>
       <HomeGrid />
 
