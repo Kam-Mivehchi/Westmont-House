@@ -89,6 +89,8 @@ function ResponsiveNavbar() {
             aspect-ratio:2/1;
             justify-self: start;
             margin-left: 20px;
+            position:relative;
+            z-index:1;
             }
 
             .navbar ul {
@@ -96,8 +98,7 @@ function ResponsiveNavbar() {
             display: grid;
             grid-template-columns: repeat(4,1fr);
             justify-self: end;
-            position:relative;
-            z-index:-1;
+           
             }
 
             .nav-item a {
@@ -164,7 +165,8 @@ function ResponsiveNavbar() {
             /* MOBILE MENU & ANIMATION */
 
             .menu-toggle .bar{
-               
+                position:relative;
+            z-index:1;
             width: 25px;
             height: 3px;
             background-color: #3f3f3f;
@@ -242,6 +244,7 @@ function ResponsiveNavbar() {
                transform: translate(-101%);
                text-align: center;
                overflow: hidden;
+                
             }
             
             .navbar li {
