@@ -110,9 +110,17 @@ select {
     scroll-behavior: auto !important;
   }
 }
+a{
+ 
+ color: ${({ theme }) => theme.color.accent2};
+  font-size: 1rem;
+  font-weight: bold;
+  text-decoration: none;
+  transition: color 0.3s ease-out;
+}
 a:hover{
- color:black;
-filter:drop-shadow( 0 0 10px black)
+color: ${({ theme }) => theme.color.accent};
+
 }
 
 `

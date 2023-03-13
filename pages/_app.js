@@ -10,12 +10,21 @@ const theme = {
     fontDark: "black",
     fontLight: "white",
     accent: "purple",
+    accent2: "teal",
     shadow: "black"
   },
   border: {
     inner: ".5em",
     outer: "1em",
     input: ".25em"
+  },
+  breakpoints: {
+    sm: '640px',
+    md: '768px',
+    lg: '1024px',
+    xl: '1280px',
+    xxl: '	1536px'
+
   }
 }
 export default function App({ Component, pageProps }) {
